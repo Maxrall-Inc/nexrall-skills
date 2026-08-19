@@ -1,0 +1,24 @@
+{
+  "name": "nexrall-skills",
+  "description": "Evidence-over-claims skills for AI coding agents: reliability (verify edits, tests, refactors, claims), security (audit skills before install, harden against prompt injection), and a blockchain vertical pack.",
+  "version": "1.1.0",
+  "author": {
+    "name": "Nexrall",
+    "email": "team@nexrall.com"
+  },
+  "homepage": "https://github.com/Maxrall-Inc/nexrall-skills",
+  "repository": "https://github.com/Maxrall-Inc/nexrall-skills",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "reliability",
+    "verification",
+    "testing",
+    "security",
+    "prompt-injection",
+    "blockchain",
+    "evidence",
+    "best-practices",
+    "workflows"
+  ]
+}

@@ -12,6 +12,16 @@ the routing rule (it decides *when* the agent loads the skill); the body is the
 playbook (it decides *what the agent does* once loaded). Most rejected skills
 fail the routing rule, not the playbook.
 
+Two special cases:
+
+- **`evidence-first` is the router.** It exists to *point* at the other
+  reliability/security skills, not to re-explain them. Keep it a routing table
+  plus the five-trap summary — do not fold a full skill's procedure into it.
+- **`references/war-stories.md` is the proof.** A rule with no scar behind it
+  is a prompt, not a skill. When you add a rule, add the incident that forced
+  it (what we first believed → what actually happened → why it hurt), or the
+  rule doesn't earn its place.
+
 ## The bar
 
 Before opening a PR, check each of these:
@@ -78,6 +88,8 @@ loop if you want the rigorous version.
 - [ ] New skill is one directory with a `SKILL.md` at its root
 - [ ] `name` matches the directory name
 - [ ] `description` names trigger phrases, in third person
+- [ ] If the skill adds a rule, a `references/war-stories.md` entry names the
+      incident behind it (not just "best practice")
 - [ ] No bundled `hooks.json` / `mcp.json` that would execute code on install
 - [ ] License is MIT (or you've said otherwise explicitly)
 - [ ] Ran the trigger test above and pasted the result in the PR

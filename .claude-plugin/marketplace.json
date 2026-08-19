@@ -1,0 +1,20 @@
+{
+  "name": "nexrall-skills",
+  "description": "Nexrall's evidence-over-claims skills for AI coding agents — reliability, security, and blockchain packs.",
+  "owner": {
+    "name": "Nexrall",
+    "email": "team@nexrall.com"
+  },
+  "plugins": [
+    {
+      "name": "nexrall-skills",
+      "description": "Evidence-over-claims skills for AI coding agents: reliability, security, and a blockchain vertical pack.",
+      "version": "1.1.0",
+      "source": "./",
+      "author": {
+        "name": "Nexrall",
+        "email": "team@nexrall.com"
+      }
+    }
+  ]
+}

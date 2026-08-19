@@ -1,22 +1,31 @@
 # Nexrall Skills
 
-Production-grade [Agent Skills](https://agentskills.io) maintained by the
-[Nexrall](https://nexrall.com) team. Every skill here is a plain
-`SKILL.md` folder that works in **any compliant client** — Claude Code, Codex,
-Gemini CLI, Cursor, VS Code, and Nexrall Code alike. No vendor lock-in, no
-Nexrall-specific format.
+> **Evidence over claims.** Every skill in this repo exists because a real
+> coding agent once reported "done" when the file never changed, "green" when
+> the test was lying, or "safe" when the thing it read was trying to steer it.
 
-Most skill collections chase "yet another dev prompt." This one is different:
-we build the two categories the ecosystem is short on, and where a real team's
-battle scars are worth more than another template.
+Production-grade [Agent Skills](https://agentskills.io) maintained by the
+[Nexrall](https://nexrall.com) team. Each skill is a plain `SKILL.md` folder
+that works in **any compliant client** — Claude Code, Codex, Gemini CLI,
+Cursor, VS Code, and Nexrall Code alike. No vendor lock-in, no Nexrall-specific
+format.
+
+Most skill collections chase "yet another dev prompt." This one is different.
+We encode the lessons a real team learned **the hard way** — not a
+283,000-and-1st template, but the two categories the ecosystem is short on,
+where battle scars are worth more than another prompt:
 
 - **Reliability** — the skills that stop an AI coding agent from lying to you.
-  These encode lessons we learned the hard way (false-green tests, edits that
-  report success without persisting, refactors that miss a call site).
 - **Security** — auditing a skill/plugin *before* you install it, and hardening
   against prompt-injection in anything the agent reads.
-- **Blockchain** — a vertical pack: smart-contract review, on-chain analysis,
-  DeFi risk, and a daily news digest.
+- **Blockchain** — a vertical pack with real appetite and almost no curated
+  SKILL.md packs.
+
+**Start with [`evidence-first`](skills/evidence-first/SKILL.md)** — the master
+workflow that routes you to the right discipline for whatever you're doing.
+Then read its [`war-stories.md`](skills/evidence-first/references/war-stories.md)
+to see the actual incidents behind each rule. The rules are not ceremony; they
+are scars.
 
 ## Install
 
@@ -31,8 +40,15 @@ Codex, Cursor, Gemini CLI, Nexrall Code, and 70+ more) via the
 [skills.sh](https://skills.sh) CLI. Add `--agent <name>` to target a specific
 agent, or `--list` to see what it will install before committing.
 
-Prefer manual install? Copy the skill folder you want into the skills
-directory your client scans:
+**Claude Code plugin (native):**
+
+```bash
+/plugin marketplace add Maxrall-Inc/nexrall-skills
+/plugin install nexrall-skills@nexrall-skills
+```
+
+**Manual install** — copy the skill folder you want into the skills directory
+your client scans:
 
 ```bash
 # per-project (Claude Code, Codex, Cursor, Nexrall Code, …)
@@ -55,6 +71,7 @@ demand ("progressive disclosure").
 
 | Skill | What it stops |
 |---|---|
+| [`evidence-first`](skills/evidence-first/SKILL.md) | **The master workflow** — routes every "I'm done" through the right check |
 | [`agent-verification`](skills/agent-verification/SKILL.md) | "I've made that edit" when the file never changed |
 | [`flaky-test-detector`](skills/flaky-test-detector/SKILL.md) | Test failures that come and go, blamed on code that's actually fine |
 | [`test-integrity-guard`](skills/test-integrity-guard/SKILL.md) | Weakening an assertion to make a test pass |
@@ -77,15 +94,22 @@ demand ("progressive disclosure").
 | [`defi-risk-assessment`](skills/defi-risk-assessment/SKILL.md) | Sizes up a protocol's smart-contract, liquidity, and oracle risk |
 | [`crypto-news-digest`](skills/crypto-news-digest/SKILL.md) | Turns many news sources into one structured daily digest |
 
-## Why these, and not more "dev" skills
+## Why "evidence over claims", and not more "dev" skills
 
 The public skill indexes already list ~289k development-and-engineering skills.
-A 289,001st commit-message helper moves nothing. The three categories above are
-where demand outstrips supply: agent **reliability** (the #1 thing users
-complain about), **security** (where we think we do it better than the
-defaults), and **blockchain** (a vertical with real appetite and almost no
-curated SKILL.md packs). See `CONTRIBUTING.md` for the quality bar and how to
-add a skill.
+A 289,001st commit-message helper moves nothing. The single most expensive
+failure in AI coding is **not** a wrong line of code — it is an agent that
+*sounds right while being wrong*: reporting success that never happened,
+citing a function it never read, certifying a suite that compares two wrongs
+to each other.
+
+The Reliability and Security packs are one discipline under two names: *find
+the evidence before you believe the signal.* That discipline is the thing
+users complain about most, the thing that costs the most when missing, and the
+thing a generic prompt cannot teach because it requires the *specific* failure
+modes we documented as war stories.
+
+See `CONTRIBUTING.md` for the quality bar and how to add a skill.
 
 ## License
 
