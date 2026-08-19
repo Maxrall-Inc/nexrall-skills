@@ -18,11 +18,12 @@ skill makes "no call site left behind" a checkable claim, not an assumption.
 
 ## Procedure
 
-1. **Find every reference BEFORE you rename.** Use the semantic tools if
-   available (`find_references` / `get_workspace_symbols`), and a text search
-   (`search_files`) as the backstop — semantic tools miss string references,
-   dynamic `require`/`import()` calls, and config/template mentions; text
-   search misses indirect usages. Use both.
+1. **Find every reference BEFORE you rename.** Use your editor's semantic
+   tools if available (find-references, find-symbol, go-to-definition), and a
+   plain text search (grep, or your client's search tool) as the backstop —
+   semantic tools miss string references, dynamic `require`/`import()` calls,
+   and config/template mentions; text search misses indirect usages that a
+   language server resolves (re-exports, interface implementations). Use both.
 2. **Enumerate the full surface.** For a rename/removal, the old name can
    appear as:
    - an import (`import { oldName }`, `require('./old')`)
@@ -49,7 +50,7 @@ skill makes "no call site left behind" a checkable claim, not an assumption.
 
 You are not done until BOTH hold:
 
-- `search_files` for the old name returns only legitimate historical/alias
+- A text search for the old name returns only legitimate historical/alias
   hits (which you can name and justify).
 - The test suite (or the relevant subset) passes.
 

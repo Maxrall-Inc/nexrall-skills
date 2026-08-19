@@ -17,11 +17,11 @@ skill turns "it should have worked" into "here is the proof it did."
 
 ## When this matters most
 
-- After a batch of `edit_file` / `multi_edit` / `write_file` calls, before
-  claiming the task is complete.
+- After a batch of file-editing tool calls, before claiming the task is
+  complete.
 - Whenever the user asks whether something "actually" happened.
 - After a tool result that looks odd (an empty diff, a "no change" message,
-  a truncation warning, a multi-edit that reported a partial failure).
+  a truncation warning, a batch edit that reported a partial failure).
 - Before declaring a fix "done" in a PR or commit message.
 
 ## The core rule
@@ -32,21 +32,22 @@ truth. Read it back and compare.
 ## Procedure
 
 1. **Identify what you claim changed.** For every file you edited, note the
-   exact `old_string` → `new_string` (or the write) you intended.
-2. **Read the file back.** Use `read_file` (or `search_files` for the changed
-   region) to fetch the current on-disk content. Never trust an in-memory
-   buffer or the tool's own echo.
+   exact old text → new text (or the write) you intended.
+2. **Read the file back.** Use whatever file-reading tool your environment
+   provides (a "read file" tool, `cat`, an editor's own re-open) to fetch the
+   current on-disk content. Never trust an in-memory buffer or the edit
+   tool's own echo of what it thinks it wrote.
 3. **Verify the change is actually present.**
    - Search for the NEW text — it must be there.
    - Search for the OLD text — it must be gone (unless it legitimately appears
      elsewhere; if it does, say so and point at the specific location).
-4. **Check for truncation and partial writes.** A `multi_edit` with N changes
-   can report failure on one while the others were applied — or, in some
-   wrappers, roll back everything. Always confirm the END state, not the
+4. **Check for truncation and partial writes.** A batch/multi-file edit with
+   N changes can report failure on one while the others were applied — or, in
+   some tools, roll back everything. Always confirm the END state, not the
    reported count.
 5. **Check for silent overwrites.** If two steps wrote the same file, confirm
    the final content contains BOTH intended changes, not just the last one.
-6. **Report honestly, with evidence.** Say "verified: `read_file` at
+6. **Report honestly, with evidence.** Say "verified: reading the file back at
    `path:line` shows the new value `X`". If something did NOT apply, say so
    explicitly and re-do it — never describe a half-applied edit as complete.
 
@@ -68,14 +69,14 @@ fixing now."
 
 "Read the file back" sounds obvious; the value is doing it *every time*, not
 just when you feel unsure. The failures this catches are exactly the ones that
-feel sure: a write to the wrong path, a case-sensitivity mismatch, a
-`multi_edit` that rolled back, a template literal that silently truncated
-generated output. They all report success. Only the read-back catches them.
+feel sure: a write to the wrong path, a case-sensitivity mismatch, a batch
+edit that rolled back, a template literal that silently truncated generated
+output. They all report success. Only the read-back catches them.
 
 ## Edge cases
 
-- **Large files:** verify the changed hunk with `read_file` `offset`/`limit`,
-  not the whole file.
+- **Large files:** verify the changed hunk with a bounded read (an offset/
+  line-range, or `grep -n` around the change), not the whole file.
 - **Generated/worker output:** if a step builds a worker or bundle from a
   template, the source file can parse fine while the *generated* output is
   truncated. Verify the artifact, not just the source.

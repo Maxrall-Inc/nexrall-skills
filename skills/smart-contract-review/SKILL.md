@@ -40,8 +40,14 @@ Who can call the state-changing functions? Check every `onlyOwner` /
 
 - A missing modifier on a `setX`/`withdraw`/`mint`/`upgrade` function.
 - An over-permissive role (`DEFAULT_ADMIN_ROLE` handed to the wrong address).
-- `tx.origin` used for authorization (it's always the caller's caller, not the
-  caller — a phishing/relay vector).
+- `tx.origin` used for authorization. `tx.origin` is the externally-owned
+  account that started the whole transaction chain, not `msg.sender` (the
+  immediate caller) — they're equal for a direct call, but diverge the moment
+  any contract is interposed. An attacker can trick the real owner into
+  calling a malicious contract, which then calls the target on the owner's
+  behalf: `msg.sender` is the malicious contract (correctly rejected), but
+  `tx.origin` is still the legitimate owner (wrongly authorized). Use
+  `msg.sender` for authorization checks.
 - `initialize()` left callable (an uninitialized proxy can be taken over).
 
 ### 3. Integer overflow / underflow

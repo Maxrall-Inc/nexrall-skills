@@ -2,6 +2,7 @@
 name: crypto-news-digest
 description: Aggregate blockchain and crypto news from multiple sources into one structured daily digest. Use when the user asks for a crypto or blockchain news roundup, a daily digest, "what happened in crypto today", or wants market moves and regulation summarized from several outlets.
 license: MIT
+compatibility: Requires network access to fetch news sources.
 metadata:
   author: nexrall
   version: "1.0"

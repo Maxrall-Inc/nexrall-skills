@@ -2,6 +2,7 @@
 name: on-chain-analyst
 description: Read blockchains and block explorers to answer questions about on-chain activity — what happened, to whom, how much, and when. Use when the user asks about a transaction, wallet, contract activity, token transfer, whale movement, or wants on-chain data investigated using explorers or indexers like Etherscan or Dune.
 license: MIT
+compatibility: Requires network access to a block explorer, indexer, or RPC endpoint.
 metadata:
   author: nexrall
   version: "1.0"

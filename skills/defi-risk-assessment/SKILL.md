@@ -2,6 +2,7 @@
 name: defi-risk-assessment
 description: Assess the risk of a DeFi protocol or position across smart-contract risk, liquidity, oracle dependence, and concentration, before the user deposits or invests. Use when the user asks "is this protocol safe", "should I put money in this", or wants a yield pool, lending market, or token evaluated.
 license: MIT
+compatibility: Benefits from network access to check TVL, audits, and holder distribution; can also work from information the user provides directly.
 metadata:
   author: nexrall
   version: "1.0"

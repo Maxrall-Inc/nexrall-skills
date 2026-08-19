@@ -26,9 +26,11 @@ Do not present a hypothesis as a fact. The label is the difference.
 
 ## Procedure
 
-1. **Before asserting, read.** If the claim is about this repo, use
-   `read_file` / `get_symbols` / `find_references` to locate the truth. Do not
-   reason from a file you have only seen referenced.
+1. **Before asserting, read.** If the claim is about this repo, use your
+   environment's file-reading and code-navigation tools (read a file, search
+   its contents, jump to a definition, find its usages — whatever your client
+   exposes) to locate the truth. Do not reason from a file you have only seen
+   referenced.
 2. **Attach the evidence.** State it as `path:line`, and quote the smallest
    slice that supports the claim.
 3. **Narrow claims that are actually narrower.** "The API returns 401 on

@@ -54,8 +54,8 @@ Go through each, and cite the exact line:
   them. A plugin that ships these is in a different risk class than a pure
   prompt pack.
 - **`allowed-tools` that don't match the description.** A "read-only doc
-  helper" that declares `bash`, `write_file`, and `delete_file` is asking for
-  more than its description implies.
+  helper" that declares a shell/bash tool and a file-write or file-delete
+  tool is asking for more than its description implies.
 - **Backtick / template-literal traps** in scripts that would break out of a
   quoted context or truncate generated code.
 
