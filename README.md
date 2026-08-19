@@ -20,9 +20,19 @@ battle scars are worth more than another template.
 
 ## Install
 
-Copy the skill folder you want into the skills directory your client scans.
-All three paths below are recognized by the ecosystem; use whichever your tool
-documents:
+**One command, any client:**
+
+```bash
+npx skills add Maxrall-Inc/nexrall-skills
+```
+
+This installs the pack into whatever agent directory you have (Claude Code,
+Codex, Cursor, Gemini CLI, Nexrall Code, and 70+ more) via the
+[skills.sh](https://skills.sh) CLI. Add `--agent <name>` to target a specific
+agent, or `--list` to see what it will install before committing.
+
+Prefer manual install? Copy the skill folder you want into the skills
+directory your client scans:
 
 ```bash
 # per-project (Claude Code, Codex, Cursor, Nexrall Code, …)
