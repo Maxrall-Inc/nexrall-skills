@@ -1,0 +1,6 @@
+# Local install artifacts — created by the `npx skills add` CLI (or manual copy)
+# when a user installs this pack into their own agent directory. These are not
+# part of the published skill source and must never be committed.
+.agents/
+.claude/
+skills-lock.json
