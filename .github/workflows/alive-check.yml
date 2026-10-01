@@ -1,0 +1,13 @@
+name: Alive Check
+
+on:
+  push:
+    paths:
+      - '.github/workflows/alive-check.yml'
+  workflow_dispatch:
+
+jobs:
+  alive:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "account-level actions alive"
